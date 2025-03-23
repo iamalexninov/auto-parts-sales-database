@@ -337,4 +337,118 @@ VALUES
     ('Emily', 'Johnson', 'Sales Manager', '2020-02-20', '1980-04-23', '456 Commerce St', 'Columbus', 'OH', '43215', '614-555-5678', 'ejohnson@autopartssales.com', 1, 65000.00, 0.05),
     ('Michael', 'Williams', 'Inventory Manager', '2020-03-10', '1978-09-12', '789 Supply Ave', 'Columbus', 'OH', '43215', '614-555-9012', 'mwilliams@autopartssales.com', 1, 62000.00, 0.00),
     ('Sarah', 'Brown', 'Sales Associate', '2020-05-15', '1985-11-30', '321 Market Blvd', 'Columbus', 'OH', '43215', '614-555-3456', 'sbrown@autopartssales.com', 2, 45000.00, 0.03),
-    ('Robert', 'Jones', 'Sales Associate', '2020-06-22', '1988-02-15', '654 Retail Ln', 'Columbus', 'OH', '43215', '614-555-7890', 'rjones@autopartssales.com', 2, 45000.00, 0.03)
+    ('Robert', 'Jones', 'Sales Associate', '2020-06-22', '1988-02-15', '654 Retail Ln', 'Columbus', 'OH', '43215', '614-555-7890', 'rjones@autopartssales.com', 2, 45000.00, 0.03);
+
+-- INVENTORY TABLE (Revised based on documentation)
+INSERT INTO Inventory (ProductID, ChangeDate, ChangeType, Quantity, SourceDocument) 
+VALUES 
+(1, '2025-01-15', 'Purchase', 50, 'PO10015'),
+(2, '2025-01-20', 'Purchase', 75, 'PO10016'),
+(3, '2025-01-25', 'Purchase', 60, 'PO10017'),
+(4, '2025-02-01', 'Purchase', 40, 'PO10018'),
+(5, '2025-02-05', 'Purchase', 55, 'PO10019'),
+(1, '2025-02-10', 'Sale', -5, 'ORD1001'),
+(2, '2025-02-10', 'Sale', -3, 'ORD1001'),
+(3, '2025-02-15', 'Sale', -2, 'ORD1002'),
+(4, '2025-02-15', 'Sale', -1, 'ORD1002'),
+(5, '2025-02-20', 'Sale', -4, 'ORD1003'),
+(1, '2025-02-25', 'Sale', -10, 'ORD1004'),
+(3, '2025-03-01', 'Return', 1, 'RET1001'),
+(2, '2025-03-05', 'Adjustment', -2, 'ADJ10001'),
+(4, '2025-03-10', 'Sale', -5, 'ORD1005'),
+(5, '2025-03-15', 'Sale', -7, 'ORD1006');
+
+-- ORDERS TABLE (Revised based on documentation)
+INSERT INTO Orders (CustomerID, EmployeeID, VehicleID, OrderDate, RequiredDate, ShippedDate, Status, TotalAmount)
+VALUES 
+(1, 3, 1, '2025-02-01', '2025-02-07', '2025-02-04', 'Delivered', 305.97),
+(2, 5, 3, '2025-02-05', '2025-02-12', '2025-02-09', 'Delivered', 136.75),
+(3, 4, 4, '2025-02-10', '2025-02-17', '2025-02-14', 'Delivered', 239.97),
+(4, 2, 5, '2025-02-15', '2025-02-22', '2025-02-18', 'Delivered', 239.21),
+(5, 1, NULL, '2025-02-20', '2025-02-27', '2025-02-24', 'Delivered', 191.97),
+(1, 3, 1, '2025-02-25', '2025-03-04', '2025-02-28', 'Delivered', 215.48),
+(6, 4, 7, '2025-03-01', '2025-03-08', '2025-03-04', 'Delivered', 127.05),
+(7, 2, 8, '2025-03-05', '2025-03-12', '2025-03-09', 'Delivered', 219.97),
+(8, 5, NULL, '2025-03-10', '2025-03-17', '2025-03-14', 'Delivered', 262.47),
+(9, 1, 10, '2025-03-15', '2025-03-22', '2025-03-19', 'Delivered', 205.95),
+(10, 3, 11, '2025-03-20', '2025-03-27', NULL, 'Processing', 426.97);
+
+-- ORDER DETAILS TABLE (Revised based on documentation)
+INSERT INTO OrderDetails (OrderID, ProductID, UnitPrice, Quantity, Discount)
+VALUES 
+(1, 1, 129.99, 2, 0.00),
+(1, 5, 45.99, 1, 0.00),
+(2, 3, 89.99, 1, 0.00),
+(2, 7, 12.99, 4, 0.10),
+(3, 2, 199.99, 1, 0.05),
+(3, 10, 24.99, 2, 0.00),
+(4, 4, 149.99, 1, 0.00),
+(4, 8, 34.99, 3, 0.15),
+(5, 6, 59.99, 2, 0.00),
+(5, 9, 79.99, 1, 0.10),
+(6, 1, 129.99, 1, 0.00),
+(6, 3, 89.99, 1, 0.05),
+(7, 5, 45.99, 2, 0.00),
+(7, 7, 12.99, 3, 0.10),
+(8, 2, 199.99, 1, 0.15),
+(8, 10, 24.99, 2, 0.00),
+(9, 4, 149.99, 1, 0.05),
+(9, 6, 59.99, 2, 0.00),
+(10, 8, 34.99, 4, 0.10),
+(10, 9, 79.99, 1, 0.00),
+(11, 1, 129.99, 2, 0.05),
+(11, 2, 199.99, 1, 0.10);
+
+-- PAYMENTS TABLE (Revised based on documentation)
+INSERT INTO Payments (OrderID, PaymentDate, PaymentMethod, Amount, TransactionID, Status)
+VALUES 
+(1, '2025-02-01', 'Credit Card', 305.97, 'TXN1001', 'Completed'),
+(2, '2025-02-05', 'PayPal', 136.75, 'TXN1002', 'Completed'),
+(3, '2025-02-10', 'Credit Card', 239.97, 'TXN1003', 'Completed'),
+(4, '2025-02-15', 'Debit Card', 239.21, 'TXN1004', 'Completed'),
+(5, '2025-02-20', 'Credit Card', 191.97, 'TXN1005', 'Completed'),
+(6, '2025-02-25', 'PayPal', 215.48, 'TXN1006', 'Completed'),
+(7, '2025-03-01', 'Credit Card', 127.05, 'TXN1007', 'Completed'),
+(8, '2025-03-05', 'Debit Card', 219.97, 'TXN1008', 'Completed'),
+(9, '2025-03-10', 'Credit Card', 262.47, 'TXN1009', 'Completed'),
+(10, '2025-03-15', 'PayPal', 205.95, 'TXN1010', 'Completed'),
+(11, '2025-03-20', 'Credit Card', 426.97, 'TXN1011', 'Pending');
+
+-- SHIPPING TABLE (Revised based on documentation)
+INSERT INTO Shipping (OrderID, ShipDate, Carrier, TrackingNumber, EstimatedDelivery, ActualDelivery, Status)
+VALUES 
+(1, '2025-02-04', 'FedEx', 'FDX1001234', '2025-02-07', '2025-02-06', 'Delivered'),
+(2, '2025-02-09', 'UPS', 'UPS5001234', '2025-02-12', '2025-02-11', 'Delivered'),
+(3, '2025-02-14', 'USPS', 'USPS7001234', '2025-02-17', '2025-02-16', 'Delivered'),
+(4, '2025-02-18', 'FedEx', 'FDX1002345', '2025-02-22', '2025-02-21', 'Delivered'),
+(5, '2025-02-24', 'UPS', 'UPS5002345', '2025-02-27', '2025-02-26', 'Delivered'),
+(6, '2025-02-28', 'USPS', 'USPS7002345', '2025-03-04', '2025-03-03', 'Delivered'),
+(7, '2025-03-04', 'FedEx', 'FDX1003456', '2025-03-08', '2025-03-07', 'Delivered'),
+(8, '2025-03-09', 'UPS', 'UPS5003456', '2025-03-12', '2025-03-11', 'Delivered'),
+(9, '2025-03-14', 'USPS', 'USPS7003456', '2025-03-17', '2025-03-16', 'Delivered'),
+(10, '2025-03-19', 'FedEx', 'FDX1004567', '2025-03-22', '2025-03-21', 'Delivered');
+
+-- RETURNS TABLE (Revised based on documentation)
+INSERT INTO Returns (OrderID, CustomerID, ReturnDate, Reason, RefundAmount, ProcessedBy)
+VALUES 
+(2, 2, '2025-02-15', 'Defective part', 89.99, 3),
+(4, 4, '2025-02-25', 'Wrong part ordered', 149.99, 2),
+(7, 6, '2025-03-10', 'Damaged during shipping', 45.99, 1),
+(9, 8, '2025-03-20', 'No longer needed', 119.98, 5);
+
+-- RETURN DETAILS TABLE (Revised based on documentation)
+INSERT INTO ReturnDetails (ReturnID, ProductID, Quantity, Reason, RefundAmount)
+VALUES 
+(1, 3, 1, 'Part was damaged on arrival', 89.99),
+(2, 4, 1, 'Incorrect size for vehicle', 149.99),
+(3, 5, 1, 'Package arrived crushed', 45.99),
+(4, 6, 2, 'Customer found alternative solution', 119.98);
+
+-- PROMOTIONS TABLE (Revised based on documentation)
+INSERT INTO Promotions (PromotionName, DiscountType, DiscountValue, CategoryID, ProductID, StartDate, EndDate, IsActive)
+VALUES 
+('Spring Brake Sale', 'Percentage', 15.00, 2, NULL, '2025-03-01', '2025-03-31', 1),
+('New Customer Discount', 'FixedAmount', 20.00, NULL, NULL, '2025-01-01', '2025-12-31', 1),
+('Engine Parts Special', 'Percentage', 10.00, 1, NULL, '2025-02-15', '2025-04-15', 1),
+('Premium Oil Filter Discount', 'Percentage', 25.00, NULL, 5, '2025-03-10', '2025-04-10', 1),
+('Summer Cooling System Sale', 'Percentage', 30.00, 3, NULL, '2025-06-01', '2025-06-30', 0);
