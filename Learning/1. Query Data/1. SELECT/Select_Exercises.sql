@@ -24,15 +24,13 @@ order by TotalValue asc
 select (FirstName + ' ' + LastName) as FullName 
 from Customers
 
--- TODO: Claude Sonnet or ChatGTP
-/*
-great but I saw something, we have empty tables. Now i will give you the tables, fill each table with 3 rows, that are the tables:
-Inventory
-OrderDetails
-Orders
-Payments
-Promotions
-ReturnDetails
-Returns
-Shipping
-*/
+--8. Write a query to display the OrderID, OrderDate, and a new column showing the year of the order called 'Order Year' from the Orders table.
+select OrderID, OrderDate, year(OrderDate) as OrderYear from Orders
+
+--9. Write a query to display the ProductName and price with a 10% discount from the Products table. Label the discounted price as 'Sale Price'.
+select ProductName, convert(decimal(10,2), (UnitPrice - (UnitPrice * 0.10))) as SalePrice from Products
+
+--10. Write a query to display the VehicleID, Make, Model, and Year columns from the Vehicles table, 
+-- along with a new column called 'Vehicle Description' that combines these values (e.g., "2019 Honda Civic").
+select VehicleID, Make, Model, Year, concat('e.g.,',' "', Year, ' ', Make, ' ', Model, '"') as VehicleDescription
+from Vehicles
